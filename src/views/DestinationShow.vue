@@ -12,7 +12,7 @@ export default {
     },
   },
   async created() {
-    const response = await fetch(`https://travel-dummy-api.netlify.app/${this.$route.params.slug}.json`, {mode: 'no-cors'});
+    const response = await fetch(`https://travel-dummy-api.netlify.app/${this.$route.params.slug}.json`,);
     this.destination = await response.json();
   }
 }
@@ -20,12 +20,14 @@ export default {
 </script>
 
 <template>
-  <div v-show="destination.id">
-    <h2>Hello {{ destination.name }}</h2>
-    <div class="destination-details">
-      <img :alt="destination.name" height="250"
-           src="https://www.worldatlas.com/r/w960-q80/upload/76/ef/03/shutterstock-1014749632.jpg" width="500">
-      <p>{{ destination.description }}</p>
+  <section v-if="destination" class="destinations">
+    <div v-show="destination.id">
+      <h1>{{ destination.name }}</h1>
+      <div class="destination-details">
+        <img :alt="destination.name" height="250"
+             src="https://www.worldatlas.com/r/w960-q80/upload/76/ef/03/shutterstock-1014749632.jpg" width="500">
+        <p>{{ destination.description }}</p>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
