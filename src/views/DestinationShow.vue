@@ -3,14 +3,13 @@
 import src from '@/data.json';
 
 export default {
-
+  props: {
+    id: {type: String, required: true}
+  },
   computed: {
-    destinationId() {
-      return parseInt(this.$route.params.id);
-    },
     destination() {
       return src.destinations.find(
-          (destination) => destination.id === this.destinationId
+          (destination) => destination.id === parseInt(this.id)
       )
     }
   }
